@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Background Remover | Free Online Tool</title>
+    <meta name="description" content="Remove image backgrounds instantly with our free AI-powered tool. Get professional-quality results in seconds.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <header>
+            <nav>
+                <div class="logo"><a href="https://saifs.ai" style="text-decoration: none;">BG Remover AI</a></div>
+                <a href="https://saifs.ai/ai-image-bg-remover" class="try-pro-btn">Try Pro Version</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="hero-section">
+                <h1>Remove Image Background with AI</h1>
+                <p>Professional-grade background removal powered by artificial intelligence</p>
+            </div>
+
+            <div class="upload-section">
+                <div class="upload-container" 
+                     @dragover.prevent 
+                     @drop.prevent="handleDrop"
+                     :class="{ 'has-image': selectedImage }">
+                    <div v-if="!selectedImage" class="upload-prompt">
+                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
+                        <h3>Drop your image here</h3>
+                        <p>or</p>
+                        <label class="upload-btn">
+                            Choose File
+                            <input type="file" @change="handleFileSelect" accept="image/*" style="display: none;">
+                        </label>
+                    </div>
+                    <img v-else :src="selectedImage" class="preview-image">
+                </div>
+
+                <button @click="processImage" class="process-btn" :disabled="!selectedImage">
+                    Remove Background
+                </button>
+
+                <div v-if="processedImage" class="result-section">
+                    <h2>Result</h2>
+                    <div class="result-image-container">
+                        <img :src="processedImage" class="result-image">
+                        <button @click="downloadImage" class="download-btn">Download Image</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>For advanced features, try our <a href="https://saifs.ai/ai-image-bg-remover">Pro Version</a></p>
+            <p>© 2024 BG Remover AI. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html> 
